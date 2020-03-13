@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: 19.07
+name: 单独编译passwall
 
 on:
   #release:
