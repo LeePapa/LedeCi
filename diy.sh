@@ -9,4 +9,4 @@
 sed -i 's/192.168.1.1/192.168.88.88/g' package/base-files/files/bin/config_generate
 #sed -i 's/4.14/4.19/g' target/linux/ramips/Makefile
 #sed -i 'a src-git passwall https://github.com/Lienol/openwrt-package/tree/passwall' feeds.conf.default
-git clone https://github.com/Lienol/openwrt-package package/Lienol
+git clone https://github.com/Lienol/openwrt-package/tree/passwall package/Lienol
