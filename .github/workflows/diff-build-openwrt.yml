@@ -11,15 +11,15 @@ name: 单独编译passwall
 on:
 #  release:
 #    types: published
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - 'config/diff-k2p.config'
+  push:
+    branches:
+      - master
+    paths:
+      - 'config/diff-k2p.config'
 #  schedule:
 #    - cron: 0 8 * * 5
-  watch:
-    types: started
+#  watch:
+#    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
