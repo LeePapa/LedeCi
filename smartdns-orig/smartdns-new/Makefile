@@ -15,12 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=smartdns-new
+PKG_NAME:=smartdns
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/pymumu/smartdns.git
 
-PKG_VERSION:=master
+PKG_VERSION:="`date +"1.%Y.%m.%d-%H%M"`"
 PKG_RELEASE:=3
 PKG_LICENSE:=GPL-3.0
 
