@@ -24,3 +24,24 @@ rm -rf package/lean/luci-app-pptp-server
 rm -rf package/lean/luci-app-v2ray-server
 
 # SmartDns
+cd ..
+git clone https://github.com/pymumu/smartdns.git pymumu
+cd smartdns
+
+FROM="../pymumu"
+TO="./luci-app-smartdns-new-18"
+
+cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
+cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
+cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
+cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
+cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/smartdns-new.po
+
+TO="./luci-app-smartdns-new"
+
+cp -rf $FROM/package/luci/files/usr/ $TO/root/
+cp -rf $FROM/package/luci/files/luci/htdocs/ $TO/
+cp -rf $FROM/package/luci/files/luci/controller/ $TO/luasrc/
+cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_Hans/smartdns-new.po
+
+sed -i 'a src-link smartdns ' feeds.conf.default
