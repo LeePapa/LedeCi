@@ -40,7 +40,7 @@ define Package/smartdns
   TITLE:=smartdns server new
   URL:=http://github.com/pymumu/smartdns/
   MAINTAINER:=Nick Peng <pymumu@gmail.com>
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libpthread +libopenssl
 endef
 
 define Package/smartdns/description
