@@ -26,7 +26,7 @@ rm -rf package/lean/luci-app-v2ray-server
 # SmartDns
 cd ..
 git clone https://github.com/pymumu/smartdns.git pymumu
-cd smartdns
+cd smartdns-orig
 
 FROM="../pymumu"
 TO="./luci-app-smartdns-new-18"
