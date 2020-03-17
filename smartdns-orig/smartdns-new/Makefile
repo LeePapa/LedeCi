@@ -20,7 +20,7 @@ PKG_NAME:=smartdns
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/pymumu/smartdns.git
 
-PKG_VERSION:="`date +"1.%Y.%m.%d-%H%M"`"
+PKG_VERSION:=master
 PKG_RELEASE:=3
 PKG_LICENSE:=GPL-3.0
 
@@ -34,7 +34,7 @@ include $(INCLUDE_DIR)/package.mk
 
 MAKE_ARGS := CFLAGS="$(TARGET_CFLAGS)" CC=$(TARGET_CC)
 
-define Package/smartdns-new
+define Package/smartdns
   SECTION:=net
   CATEGORY:=Network
   TITLE:=smartdns server new
@@ -43,7 +43,7 @@ define Package/smartdns-new
   DEPENDS:=+libopenssl
 endef
 
-define Package/smartdns-new/description
+define Package/smartdns/description
 SmartDNS is a local DNS server. SmartDNS accepts DNS query requests from local clients, obtains DNS query results from multiple upstream DNS servers, and returns the fastest access results to clients.
 endef
 
@@ -55,14 +55,14 @@ define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)/src $(MAKE_ARGS) all
 endef
 
-define Package/smartdns-new/conffiles
+define Package/smartdns/conffiles
 /etc/config/smartdns
 /etc/smartdns/address.conf
 /etc/smartdns/blacklist-ip.conf
 /etc/smartdns/custom.conf
 endef
 
-define Package/smartdns-new/install
+define Package/smartdns/install
 	$(INSTALL_DIR) $(1)/usr/sbin $(1)/etc/config $(1)/etc/init.d $(1)/etc/smartdns
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/smartdns $(1)/usr/sbin/smartdns
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/package/openwrt/files/etc/init.d/smartdns $(1)/etc/init.d/smartdns
@@ -72,4 +72,4 @@ define Package/smartdns-new/install
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/package/openwrt/files/etc/config/smartdns $(1)/etc/config/smartdns
 endef
 
-$(eval $(call BuildPackage,smartdns-new))
+$(eval $(call BuildPackage,smartdns))
