@@ -47,5 +47,6 @@ cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_Hans/smart
 sed -i "a src-link smartdns $PWD" ../openwrt/feeds.conf.default
 
 cd ../openwrt
-./scripts/feeds update -a
-./scripts/feeds install -a
+mkdir 111111
+#./scripts/feeds update -a
+#./scripts/feeds install -a
