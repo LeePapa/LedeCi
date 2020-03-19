@@ -37,6 +37,7 @@ cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/smartdns-new.po
+rm -rf luci-app-smartdns-new/
 
 #19.07以上版本使用
 #TO="./luci-app-smartdns-new"
@@ -44,6 +45,7 @@ cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/
 #cp -rf $FROM/package/luci/files/luci/htdocs/ $TO/
 #cp -rf $FROM/package/luci/files/luci/controller/ $TO/luasrc/
 #cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_Hans/smartdns-new.po
+#rm -rf luci-app-smartdns-new-18/
 
 #sed -i "$a src-link smartdns $PWD" ../openwrt/feeds.conf.default
 sed -i "4a src-link smartdns $PWD" ../openwrt/feeds.conf.default
