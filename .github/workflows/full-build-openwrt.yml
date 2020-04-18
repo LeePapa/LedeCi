@@ -9,7 +9,7 @@
 name: fullconfig
 
 on:
-  repository_dispatch:
+#  repository_dispatch:
 #  release:
 #    types: published
   push:
