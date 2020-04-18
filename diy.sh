@@ -23,21 +23,21 @@ rm -rf package/lean/luci-app-pppoe-relay
 rm -rf package/lean/luci-app-pptp-server
 rm -rf package/lean/luci-app-v2ray-server
 
-# SmartDns
-cd ..
-git clone https://github.com/pymumu/smartdns.git pymumu
-cd smartdns-orig
+# SmartDns 开始
+#cd ..
+#git clone https://github.com/pymumu/smartdns.git pymumu
+#cd smartdns-orig
 
-FROM="../pymumu"
+#FROM="../pymumu"
 
 #18版本使用
-TO="./luci-app-smartdns-new-18"
-cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
-cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
-cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
-cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
-cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/smartdns-new.po
-rm -rf luci-app-smartdns-new/
+#TO="./luci-app-smartdns-new-18"
+#cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
+#cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
+#cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
+#cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
+#cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/smartdns-new.po
+#rm -rf luci-app-smartdns-new/
 
 #19.07以上版本使用
 #TO="./luci-app-smartdns-new"
@@ -47,9 +47,35 @@ rm -rf luci-app-smartdns-new/
 #cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_Hans/smartdns-new.po
 #rm -rf luci-app-smartdns-new-18/
 
+#添加源
 #sed -i "$a src-link smartdns $PWD" ../openwrt/feeds.conf.default
-sed -i "4a src-link smartdns $PWD" ../openwrt/feeds.conf.default
+#sed -i "4a src-link smartdns $PWD" ../openwrt/feeds.conf.default
 
-cd ../openwrt
-./scripts/feeds update -a
-./scripts/feeds install -a
+#cd ../openwrt
+#./scripts/feeds update -a
+#./scripts/feeds install -a
+
+#/SmartDns 结束
+
+#SmartDns 官方方法
+
+WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
+unzip $WORKINGDIR/master.zip -d $WORKINGDIR
+mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
+rmdir $WORKINGDIR/openwrt-smartdns-master
+rm $WORKINGDIR/master.zip
+
+LUCIBRANCH="lede" #更换此变量
+WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
+unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
+mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
+rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
+rm $WORKINGDIR/${LUCIBRANCH}.zip
+
+#/SmartDns 官方方法结束
