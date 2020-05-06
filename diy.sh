@@ -26,7 +26,7 @@ git clone https://github.com/Lienol/openwrt-package.git package/Lienol
 
 git clone https://github.com/LeePapa/openwrt-package.git leetemp/Lienol
 mv leetemp/Lienol/lienol/luci-app-passwall/* package/Lienol/lienol
-
+rmdir leetemp/Lienol
 
 ########## PassWall结束 ##########
 
