@@ -59,7 +59,7 @@ rm -rf package/lean/luci-app-v2ray-server
 
 #SmartDns 官方方法
 
-WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
+WORKINGDIR="feeds/packages/net/smartdns"
 mkdir $WORKINGDIR -p
 rm $WORKINGDIR/* -fr
 wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
@@ -69,7 +69,7 @@ rmdir $WORKINGDIR/openwrt-smartdns-master
 rm $WORKINGDIR/master.zip
 
 LUCIBRANCH="lede" #更换此变量
-WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
+WORKINGDIR="feeds/luci/applications/luci-app-smartdns"
 mkdir $WORKINGDIR -p
 rm $WORKINGDIR/* -fr
 wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
