@@ -24,11 +24,12 @@ git clone https://github.com/Lienol/openwrt-package.git package/Lienol
 #rm -rf package/lean/luci-app-pptp-server
 #rm -rf package/lean/luci-app-v2ray-server
 
+mkdir package/Lienol/lienol/luci-app-passwall
 git clone https://github.com/LeePapa/openwrt-package.git leetemp/Lienol
-mv leetemp/Lienol/lienol/luci-app-passwall/* package/Lienol/lienol
+mv leetemp/Lienol/lienol/luci-app-passwall/* package/Lienol/lienol/luci-app-passwall
 rmdir leetemp/Lienol
 
-########## PassWall结束 ##########
+########## PassWall 结束 ##########
 
 ########## SmartDns 开始 ##########
 #cd ..
