@@ -9,12 +9,13 @@
 
 name: OpenWrt-CI
 
-#on:
-  #schedule:
-    #- cron: 0 20 * * *
-  #push:
-    #tags:
-      #- '*'
+on:
+  repository_dispatch:
+#  schedule:
+#    - cron: 0 20 * * *
+#  push:
+#    tags:
+#      - '*'
 
 jobs:
 
