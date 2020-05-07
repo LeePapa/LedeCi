@@ -14,15 +14,15 @@ sed -i 's/192.168.1.1/192.168.88.88/g' package/base-files/files/bin/config_gener
 #git clone -b passwall https://github.com/Lienol/openwrt-package.git package/Lienol
 
 git clone https://github.com/Lienol/openwrt-package.git package/Lienol
-#rm -rf feeds/lienol/lienol/ipt2socks
-#rm -rf feeds/lienol/lienol/shadowsocksr-libev
-#rm -rf feeds/lienol/lienol/pdnsd-alt
-#rm -rf feeds/lienol/package/verysync
-#rm -rf feeds/lienol/lienol/luci-app-verysync
-#rm -rf package/lean/luci-app-kodexplorer
-#rm -rf package/lean/luci-app-pppoe-relay
-#rm -rf package/lean/luci-app-pptp-server
-#rm -rf package/lean/luci-app-v2ray-server
+rm -rf feeds/lienol/lienol/ipt2socks
+rm -rf feeds/lienol/lienol/shadowsocksr-libev
+rm -rf feeds/lienol/lienol/pdnsd-alt
+rm -rf feeds/lienol/package/verysync
+rm -rf feeds/lienol/lienol/luci-app-verysync
+rm -rf package/lean/luci-app-kodexplorer
+rm -rf package/lean/luci-app-pppoe-relay
+rm -rf package/lean/luci-app-pptp-server
+rm -rf package/lean/luci-app-v2ray-server
 
 #PassWall 备份装载
 mkdir package/Lienol/lienol/luci-app-passwall
@@ -79,7 +79,7 @@ rm $WORKINGDIR/master.zip
 
 #去掉makefile版本限制，使用最新源码
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d') /g" $WORKINGDIR/Makefile #修改版本号为日期
-sed -i "s/PKG_SOURCE_VERSION:=.*//g" $WORKINGDIR/Makefile #删除版本标识
+sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makefile #删除版本标识
 
 
 LUCIBRANCH="lede" #更换此变量
