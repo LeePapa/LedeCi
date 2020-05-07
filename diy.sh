@@ -28,7 +28,7 @@ rm -rf package/lean/luci-app-v2ray-server
 mkdir package/Lienol/lienol/luci-app-passwall
 git clone https://github.com/LeePapa/openwrt-package.git leetemp/Lienol
 mv leetemp/Lienol/lienol/luci-app-passwall/* package/Lienol/lienol/luci-app-passwall
-rmdir leetemp
+rm -rf leetemp
 
 ########## PassWall 结束 ##########
 
