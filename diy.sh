@@ -77,7 +77,7 @@ rmdir $WORKINGDIR/openwrt-smartdns-master
 rm $WORKINGDIR/master.zip
 
 #去掉makefile版本限制，使用最新源码
-sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=date +'%Y%m%d'/g" $WORKINGDIR/Makefile #修改版本号为日期
+sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=date +%Y%m%d/g" $WORKINGDIR/Makefile #修改版本号为日期
 sed -i "s/PKG_SOURCE_VERSION:=.*//g" $WORKINGDIR/Makefile #删除版本标识
 
 
