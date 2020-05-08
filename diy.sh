@@ -108,14 +108,13 @@ cd smartdns-orig
 FROM="../pymumu"
 
 #18版本使用
-TO="./luci-app-smartdns-new-18"
+TO="../openwrt/feeds/luci/applications/luci-app-smartdns"
 cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
 cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/smartdns-new.po
-rm -rf luci-app-smartdns-new/
-
+cd ../openwrt
 
 #更新/安装插件列表
 ./scripts/feeds update -a
