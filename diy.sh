@@ -109,6 +109,7 @@ FROM="../pymumu"
 
 #18版本使用
 TO="../openwrt/feeds/luci/applications/luci-app-smartdns"
+mkdir $TO -p
 cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
 cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
