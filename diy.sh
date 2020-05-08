@@ -113,7 +113,7 @@ cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
 cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
-cp -rf $FROM/package/luci-compat/files/luci/i18n/ $TO/po/zh-cn/
+cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
 cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns
 cd ../openwrt
 
