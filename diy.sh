@@ -108,7 +108,7 @@ cd smartdns-orig
 FROM="../pymumu"
 
 #18版本使用
-TO="./luci-compat"
+TO="luci-compat"
 cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
 cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
