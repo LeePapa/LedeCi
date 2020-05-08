@@ -123,7 +123,9 @@ cd ../openwrt
 #利用第三方法,安装最新版luci 结束
 
 #开启HelloWord
-sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
+#sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
+#sed -i '5s/#src-git/src-git/g' feeds.conf.default
+sed -i 's|^#||' feeds.conf.default
 
 #更新/安装插件列表
 ./scripts/feeds update -a
