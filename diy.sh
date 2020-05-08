@@ -9,7 +9,7 @@
 sed -i 's/192.168.1.1/192.168.88.88/g' package/base-files/files/bin/config_generate
 #sed -i 's/4.14/4.19/g' target/linux/ramips/Makefile
 
-########## PassWall ##########
+########## PassWall 开始 ##########
 #sed -i 'a src-git passwall https://github.com/Lienol/openwrt-package/tree/passwall' feeds.conf.default
 #git clone -b passwall https://github.com/Lienol/openwrt-package.git package/Lienol
 
@@ -32,7 +32,7 @@ rm -rf leetemp
 
 ########## PassWall 结束 ##########
 
-########## SmartDns 开始 ##########
+########## 第三方 SmartDns 开始 ##########
 #cd ..
 #git clone https://github.com/pymumu/smartdns.git pymumu
 #cd smartdns-orig
@@ -64,9 +64,9 @@ rm -rf leetemp
 #./scripts/feeds update -a
 #./scripts/feeds install -a
 
-########## /SmartDns 结束 ##########
+########## 第三方 SmartDns 结束 ##########
 
-#SmartDns 官方方法
+########## SmartDns 官方方法 ##########
 
 WORKINGDIR="feeds/packages/net/smartdns"
 mkdir $WORKINGDIR -p
@@ -77,22 +77,48 @@ mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
 rmdir $WORKINGDIR/openwrt-smartdns-master
 rm $WORKINGDIR/master.zip
 
+
 #去掉makefile版本限制，使用最新源码
+
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $WORKINGDIR/Makefile #修改版本号为日期
 sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makefile #删除版本标识
 
 
-LUCIBRANCH="lede" #更换此变量
-WORKINGDIR="feeds/luci/applications/luci-app-smartdns"
-mkdir $WORKINGDIR -p
-rm $WORKINGDIR/* -fr
-wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
-unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
-mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
-rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
-rm $WORKINGDIR/${LUCIBRANCH}.zip
+#官方方法安装luci,非最新版
 
+#LUCIBRANCH="lede" #更换此变量
+#WORKINGDIR="feeds/luci/applications/luci-app-smartdns"
+#mkdir $WORKINGDIR -p
+#rm $WORKINGDIR/* -fr
+#wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
+#unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
+#mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
+#rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
+#rm $WORKINGDIR/${LUCIBRANCH}.zip
+
+
+########## SmartDns 官方方法结束 ##########
+
+#利用第三方法,安装最新版luci
+
+cd ..
+git clone https://github.com/pymumu/smartdns.git pymumu
+cd smartdns-orig
+
+FROM="../pymumu"
+
+#18版本使用
+TO="./luci-app-smartdns-new-18"
+cp -rf $FROM/package/luci-compat/files/etc/ $TO/root/
+cp -rf $FROM/package/luci-compat/files/luci/view/ $TO/luasrc/
+cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
+cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
+cp -rf $FROM/package/luci-compat/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh-cn/smartdns-new.po
+rm -rf luci-app-smartdns-new/
+
+
+#更新/安装插件列表
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-#/SmartDns 官方方法结束
+
