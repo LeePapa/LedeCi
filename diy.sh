@@ -120,6 +120,11 @@ sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改
 cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns
 cd ../openwrt
 
+#利用第三方法,安装最新版luci 结束
+
+#开启HelloWord
+sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
+
 #更新/安装插件列表
 ./scripts/feeds update -a
 ./scripts/feeds install -a
