@@ -121,4 +121,5 @@ cd ../openwrt
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+sudo apt install tree
 
