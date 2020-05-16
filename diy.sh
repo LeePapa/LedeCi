@@ -7,7 +7,11 @@
 #=================================================
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.88.88/g' package/base-files/files/bin/config_generate
-sed -i 's/4.14/4.19/g' target/linux/bcm53xx/Makefile
+
+# K3 处理 #
+sed -i 's/4.14/4.19/g' target/linux/bcm53xx/Makefile #编译4.19
+sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile #仅编译K3
+# K3 处理结束 #
 
 ########## PassWall 开始 ##########
 #sed -i 'a src-git passwall https://github.com/Lienol/openwrt-package/tree/passwall' feeds.conf.default
