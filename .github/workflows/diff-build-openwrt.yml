@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: 单独编译passwall
+name: diff-k2p
 
 on:
   repository_dispatch:
