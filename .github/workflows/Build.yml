@@ -6,17 +6,17 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: K2p FullConfig
+name: Build
 
 on:
 #  repository_dispatch:
 #  release:
 #    types: published
-  push:
+# push:
 #    branches:
 #      - master
-    paths:
-      - 'config/full-k2p.config'
+#   paths:
+#     - 'config/build.config'
 #  schedule:
 #    - cron: 0 8 * * 5
   watch:
@@ -26,10 +26,9 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/full-k2p.config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  DIY_SH: diy.sh
+  CONFIG_FILE: config/build.config
+  DIY_P1_SH: build.sh
+  DIY_P2_SH: diy.sh
   SSH_ACTIONS: true
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
@@ -79,9 +78,9 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_SH
+        chmod +x $DIY_P2_SH
         cd openwrt
-        ../$DIY_SH
+        ../$DIY_P2_SH
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
