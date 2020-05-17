@@ -64,6 +64,7 @@ rm -rf leetemp
 #sed -i "$a src-link smartdns $PWD" ../openwrt/feeds.conf.default
 #sed -i "4a src-link smartdns $PWD" ../openwrt/feeds.conf.default
 
+
 #cd ../openwrt
 #./scripts/feeds update -a
 #./scripts/feeds install -a
@@ -130,6 +131,10 @@ sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makef
 #sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
 #sed -i '5s/#src-git/src-git/g' feeds.conf.default
 sed -i 's|^#||' feeds.conf.default
+
+#添加OpenClash
+sed -i "4a src-link OpenClash https://github.com/vernesong/OpenClash" feeds.conf.default
+
 
 #更新/安装插件列表
 ./scripts/feeds update -a
