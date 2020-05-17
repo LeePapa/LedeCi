@@ -1,7 +1,7 @@
 name: Initialization environment
 env:
   DEBIAN_FRONTEND: noninteractive
-run: |
+runs: |
   sudo swapoff /swapfile
   sudo rm -rf /swapfile /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
   sudo -E apt-get -qq update
@@ -12,23 +12,23 @@ run: |
   curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
 
 name: Clone source code
-run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+runs: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
 name: Load custom feeds
-run: |
+runs: |
   [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
   chmod +x $DIY_P1_SH
   cd openwrt
   ../$DIY_P1_SH
 
 name: Update feeds
-run: cd openwrt && ./scripts/feeds update -a
+runs: cd openwrt && ./scripts/feeds update -a
 
 name: Install feeds
-run: cd openwrt && ./scripts/feeds install -a
+runs: cd openwrt && ./scripts/feeds install -a
 
 name: Load custom configuration
-run: |
+runs: |
   [ -e files ] && mv files openwrt/files
   [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
   chmod +x $DIY_P2_SH
@@ -41,7 +41,7 @@ if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
 
 name: Download package
 id: package
-run: |
+runs: |
   cd openwrt
   make defconfig
   make download -j8
@@ -50,7 +50,7 @@ run: |
 
 name: Compile the firmware
 id: compile
-run: |
+runs: |
   cd openwrt
   echo -e "$(nproc) thread compile"
   make -j$(nproc) V=s || make -j1 V=s
@@ -69,7 +69,7 @@ with:
 name: Organize files
 id: organize
 if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-run: |
+runs: |
   cd openwrt/bin/targets/*/*
   rm -rf packages
   echo "::set-env name=FIRMWARE::$PWD"
@@ -84,14 +84,14 @@ with:
     
 name: Upload firmware to cowtransfer
 if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-run: |
+runs: |
   curl -fsSL git.io/file-transfer | sh
   ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
   echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
 
 name: Upload firmware to WeTransfer
 if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
-run: |
+runs: |
   curl -fsSL git.io/file-transfer | sh
   ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
   echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
