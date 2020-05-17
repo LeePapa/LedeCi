@@ -138,7 +138,7 @@ FROM="../pymumu"
 TO="luci"
 cp -rf $FROM/package/luci/files/root/usr/ $TO/root/
 cp -rf $FROM/package/luci/files/root/www/ $TO/htdocs/
-cp -rf $FROM/package/luci/files/luci/controller/ $TO/luasrc/
+cp -rf $FROM/package/luci/files/luci/control/ $TO/luasrc/
 cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_cn/smartdns.po
 
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改版本号为日期
