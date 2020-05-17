@@ -137,7 +137,7 @@ FROM="../pymumu"
 #19版本使用
 TO="luci"
 cp -rf $FROM/package/luci/files/root/usr/ $TO/root/
-cp -rf $FROM/package/luci/files/luci/htdocs/ $TO/
+cp -rf $FROM/package/luci/files/root/www/ $TO/htdocs/
 cp -rf $FROM/package/luci/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_cn/smartdns.po
 
