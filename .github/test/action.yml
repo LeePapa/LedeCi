@@ -11,23 +11,23 @@ runs: |
   sudo timedatectl set-timezone "$TZ"
   curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
 
-description:'Clone source code'
+description: 'Clone source code'
 runs: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-description:'Load custom feeds'
+description: 'Load custom feeds'
 runs: |
   [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
   chmod +x $DIY_P1_SH
   cd openwrt
   ../$DIY_P1_SH
 
-description:'Update feeds'
+description: 'Update feeds'
 runs: cd openwrt && ./scripts/feeds update -a
 
-description:'Install feeds'
+description: 'Install feeds'
 runs: cd openwrt && ./scripts/feeds install -a
 
-description:'Load custom configuration'
+description: 'Load custom configuration'
 runs: |
   [ -e files ] && mv files openwrt/files
   [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
@@ -35,11 +35,11 @@ runs: |
   cd openwrt
   ../$DIY_P2_SH
 
-description:'SSH connection to Actions'
+description: 'SSH connection to Actions'
 uses: P3TERX/debugger-action@master
 if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
 
-description:'Download package'
+description: 'Download package'
 id: package
 runs: |
   cd openwrt
@@ -48,7 +48,7 @@ runs: |
   find dl -size -1024c -exec ls -l {} \;
   find dl -size -1024c -exec rm -f {} \;
 
-description:'Compile the firmware'
+description: 'Compile the firmware'
 id: compile
 runs: |
   cd openwrt
@@ -59,14 +59,14 @@ runs: |
   [ -s DEVICE_NAME ] && echo "::set-env name=DEVICE_NAME::_$(cat DEVICE_NAME)"
   echo "::set-env name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
 
-description:'Upload bin directory'
+description: 'Upload bin directory'
 uses: actions/upload-artifact@master
 if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
 with:
   name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
   path: openwrt/bin
 
-description:'Organize files'
+description: 'Organize files'
 id: organize
 if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
 runs: |
@@ -75,21 +75,21 @@ runs: |
   echo "::set-env name=FIRMWARE::$PWD"
   echo "::set-output name=status::success"
 
-description:'Upload firmware directory'
+description: 'Upload firmware directory'
 uses: actions/upload-artifact@master
 if: steps.organize.outputs.status == 'success' && !cancelled()
 with:
   name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
   path: ${{ env.FIRMWARE }}
     
-description:'Upload firmware to cowtransfer'
+description: 'Upload firmware to cowtransfer'
 if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
 runs: |
   curl -fsSL git.io/file-transfer | sh
   ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
   echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
 
-description:'Upload firmware to WeTransfer'
+description: 'Upload firmware to WeTransfer'
 if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
 runs: |
   curl -fsSL git.io/file-transfer | sh
