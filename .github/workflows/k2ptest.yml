@@ -32,7 +32,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Build and Deploy
-      uses: .github/test
+      uses: ./.github/test
       env:
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
