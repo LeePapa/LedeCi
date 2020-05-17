@@ -143,7 +143,7 @@ cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_cn/smartdn
 
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改版本号为日期
 
-cp -rf $TO ../openwrt/feeds/luci/applications/luci-app-smartdns
+cp -rf luci ../openwrt/feeds/luci/applications/luci-app-smartdns
 cd ../openwrt
 
 #利用第三方法,安装最新版luci 结束
