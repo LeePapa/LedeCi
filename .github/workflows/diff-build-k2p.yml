@@ -6,8 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: diff-k2p_$(date +"%Y%m%d%H%M")
-
+name: diff-k2p
 on:
   repository_dispatch:
 #  release:
