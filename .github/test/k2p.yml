@@ -1,1 +1,48 @@
+#=================================================
+# https://github.com/P3TERX/Actions-OpenWrt
+# Description: Build OpenWrt using GitHub Actions
+# Lisence: MIT
+# Author: P3TERX
+# Blog: https://p3terx.com
+#=================================================
 
+name: Build
+
+on:
+#  repository_dispatch:
+#  release:
+#    types: published
+# push:
+#    branches:
+#      - master
+#   paths:
+#     - 'config/build.config'
+#  schedule:
+#    - cron: 0 8 * * 5
+  watch:
+    types: started
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Build and Deploy
+      uses: ./.github/test
+      env:
+        REPO_URL: https://github.com/coolsnowwolf/lede
+        REPO_BRANCH: master
+        FEEDS_CONF: feeds.conf.default
+        CONFIG_FILE: config/k2p.config
+        DIY_P1_SH: k2p.sh
+        DIY_P2_SH: diy.sh
+        SSH_ACTIONS: true
+        UPLOAD_BIN_DIR: true
+        UPLOAD_FIRMWARE: true
+        UPLOAD_COWTRANSFER: true
+        UPLOAD_WETRANSFER: true
+        TZ: Asia/Shanghai
