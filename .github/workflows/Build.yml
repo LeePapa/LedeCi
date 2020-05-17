@@ -28,7 +28,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/build.config
   DIY_P1_SH: build.sh
-  DIY_P2_SH: diy.sh
+  DIY_P2_SH: diyy.sh
   SSH_ACTIONS: true
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
