@@ -158,6 +158,8 @@ sed -i 's|^#||' feeds.conf.default
 
 #添加OpenClash
 sed -i "4a src-git OpenClash https://github.com/vernesong/OpenClash" feeds.conf.default
+#添加AdGuardHome
+sed -i "4a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome" feeds.conf.default
 
 #更新/安装插件列表
 ./scripts/feeds update -a
