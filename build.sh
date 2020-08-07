@@ -16,23 +16,24 @@ sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES 
 ########## PassWall 开始 ##########
 #sed -i 'a src-git passwall https://github.com/Lienol/openwrt-package/tree/passwall' feeds.conf.default
 #git clone -b passwall https://github.com/Lienol/openwrt-package.git package/Lienol
+sed -i "$a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
 
-git clone https://github.com/Lienol/openwrt-package.git package/Lienol
-rm -rf feeds/lienol/lienol/ipt2socks
-rm -rf feeds/lienol/lienol/shadowsocksr-libev
-rm -rf feeds/lienol/lienol/pdnsd-alt
-rm -rf feeds/lienol/package/verysync
-rm -rf feeds/lienol/lienol/luci-app-verysync
-rm -rf package/lean/luci-app-kodexplorer
-rm -rf package/lean/luci-app-pppoe-relay
-rm -rf package/lean/luci-app-pptp-server
-rm -rf package/lean/luci-app-v2ray-server
+#git clone https://github.com/Lienol/openwrt-package.git package/Lienol
+#rm -rf feeds/lienol/lienol/ipt2socks
+#rm -rf feeds/lienol/lienol/shadowsocksr-libev
+#rm -rf feeds/lienol/lienol/pdnsd-alt
+#rm -rf feeds/lienol/package/verysync
+#rm -rf feeds/lienol/lienol/luci-app-verysync
+#rm -rf package/lean/luci-app-kodexplorer
+#rm -rf package/lean/luci-app-pppoe-relay
+#rm -rf package/lean/luci-app-pptp-server
+#rm -rf package/lean/luci-app-v2ray-server
 
 #PassWall 备份装载
-mkdir package/Lienol/lienol/luci-app-passwall
-git clone https://github.com/LeePapa/openwrt-package.git leetemp/Lienol
-mv leetemp/Lienol/lienol/luci-app-passwall/* package/Lienol/lienol/luci-app-passwall
-rm -rf leetemp
+#mkdir package/Lienol/lienol/luci-app-passwall
+#git clone https://github.com/LeePapa/openwrt-package.git leetemp/Lienol
+#mv leetemp/Lienol/lienol/luci-app-passwall/* package/Lienol/lienol/luci-app-passwall
+#rm -rf leetemp
 
 ########## PassWall 结束 ##########
 
@@ -157,11 +158,11 @@ cd ../openwrt
 sed -i 's|^#||' feeds.conf.default
 
 #添加OpenClash
-sed -i "4a src-git OpenClash https://github.com/vernesong/OpenClash/tree/master" feeds.conf.default
+sed -i "4a src-git OpenClash https://github.com/vernesong/OpenClash.git;master" feeds.conf.default
 #添加AdGuardHome
 sed -i "4a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome" feeds.conf.default
 #添加Diy
-sed -i "$a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
+#sed -i "$a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
 
 #更新/安装插件列表
 ./scripts/feeds update -a
