@@ -161,7 +161,7 @@ sed -i "4a src-git OpenClash https://github.com/vernesong/OpenClash/tree/master"
 #添加AdGuardHome
 sed -i "4a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome" feeds.conf.default
 #添加Diy
-sed -i "4a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
+sed -i "$a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
 
 #更新/安装插件列表
 ./scripts/feeds update -a
