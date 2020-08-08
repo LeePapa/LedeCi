@@ -16,7 +16,7 @@ sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES 
 ########## PassWall 开始 ##########
 #sed -i 'a src-git passwall https://github.com/Lienol/openwrt-package/tree/passwall' feeds.conf.default
 #git clone -b passwall https://github.com/Lienol/openwrt-package.git package/Lienol
-sed -i "$a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
+sed -i "4a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
 
 #git clone https://github.com/Lienol/openwrt-package.git package/Lienol
 #rm -rf feeds/lienol/lienol/ipt2socks
