@@ -125,13 +125,13 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./openwrt/bin/*
+        #tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./openwrt/bin/*
                 
         cd openwrt/bin/targets/*/*
         
-        mv ../../../../../OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar .
+        #mv ../../../../../OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar .
         #zip -r OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }} ./../../../*
-        #tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./../../../*
+        tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./../../../*
         
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
