@@ -131,18 +131,11 @@ jobs:
         
         #mv ../../../../../OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar .
         #zip -r OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }} ./../../../*
-        tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./../../../*
+        tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}.tar ./../../../*
         
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
-
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
     
     - name: Upload firmware to cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
@@ -157,3 +150,12 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+        
+        rm ${FIRMWARE}/OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}.tar -f
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
+      with:
+        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: ${{ env.FIRMWARE }}
