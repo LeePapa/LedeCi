@@ -126,7 +126,8 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         #tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./openwrt/bin/*
-                
+        cp -r /openwrt/feeds/packages/net/smartdns/ /openwrt/bin/
+        
         cd openwrt/bin/targets/*/*
         
         #mv ../../../../../OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar .
