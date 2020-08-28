@@ -98,6 +98,7 @@ jobs:
         
         mkdir bin
         cp .config bin/full.config
+        cp -rf feeds/packages/net/smartdns/ bin/
         
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
@@ -130,7 +131,6 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         #tar -cvf OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}$.tar ./openwrt/bin/*
-        cp -r /openwrt/feeds/packages/net/smartdns/ /openwrt/bin/
         
         cd openwrt/bin/targets/*/*
         
