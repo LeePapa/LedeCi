@@ -12,14 +12,14 @@ on:
 #  repository_dispatch:
 #  release:
 #    types: published
-# push:
-#    branches:
-#      - main
-#   paths:
-#     - 'config/build.config'
+ push:
+    branches:
+      - main
+    paths:
+     - 'config/build.config'
 #  schedule:
 #    - cron: 0 8 * * 5
-  watch:
+ watch:
     types: started
 
 env:
