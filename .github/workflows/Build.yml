@@ -94,7 +94,7 @@ jobs:
       id: package
       run: |
         cd openwrt
-        #make defconfig
+        make defconfig
         
         mkdir bin
         cp .config bin/full.config
