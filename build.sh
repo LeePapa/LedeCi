@@ -155,14 +155,15 @@ cd ../openwrt
 #开启HelloWord
 #sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
 #sed -i '5s/#src-git/src-git/g' feeds.conf.default
-sed -i 's|^#||' feeds.conf.default
+#sed -i 's|^#||' feeds.conf.default
+sed -i "s/#src-git helloworld.*/src-git helloworld/g" feeds.conf.default
 
 #添加OpenClash
-#sed -i "1a src-git OpenClash https://github.com/vernesong/OpenClash.git;master" feeds.conf.default
+sed -i "1a src-git OpenClash https://github.com/vernesong/OpenClash.git;master" feeds.conf.default
 #添加AdGuardHome
-#sed -i "1a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome" feeds.conf.default
+sed -i "1a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome" feeds.conf.default
 #添加Diy
-#sed -i "1a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
+sed -i "1a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
 
 #更新/安装插件列表
 #./scripts/feeds update -a
