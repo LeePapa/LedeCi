@@ -12,11 +12,11 @@ on:
 #  repository_dispatch:
 #  release:
 #    types: published
- push:
-    branches:
-      - master
-    paths:
-     - 'config/build.config'
+# push:
+#    branches:
+#      - master
+#    paths:
+#     - 'config/build.config'
 #  schedule:
 #    - cron: 0 8 * * 5
  watch:
@@ -40,6 +40,12 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
+    
+    name: Build ${{matrix.target}}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [x86_64]
 
     steps:
     - name: Checkout
@@ -98,7 +104,7 @@ jobs:
         
         mkdir bin
         cp .config bin/full.config
-        #cp -rf build_dir/src/smartdns/ bin/
+        cp -rf dl/smartdns* bin/
         
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
