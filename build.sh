@@ -83,9 +83,9 @@
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
   rmdir $WORKINGDIR/openwrt-smartdns-master
   rm $WORKINGDIR/master.zip
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" feeds/packages/net/smartdns/Makefile
-  sed -i "/PKG_MIRROR_HASH:/d" feeds/packages/net/smartdns/Makefile
-  sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" feeds/packages/net/smartdns/Makefile
+  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g; /PKG_MIRROR_HASH:/d; s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" feeds/packages/net/smartdns/Makefile
+  #sed -i "/PKG_MIRROR_HASH:/d" feeds/packages/net/smartdns/Makefile
+  #sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" feeds/packages/net/smartdns/Makefile
 
 
 #官方方法安装luci,非最新版
@@ -118,7 +118,7 @@
   cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" luci-compat/Makefile
+  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#g" luci-compat/Makefile
   mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
   cp -rfd luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
   cd ../openwrt
