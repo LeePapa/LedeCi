@@ -122,6 +122,7 @@ cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
 
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改版本号为日期
 
+mkdir ../openwrt/feeds/luci/applications/luci-app-smartdns -p
 cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
 cd ../openwrt
 
@@ -147,6 +148,7 @@ cd ../openwrt
 
 #sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改版本号为日期
 
+#mkdir ../openwrt/feeds/luci/applications/luci-app-smartdns -p
 #cp -rf luci ../openwrt/feeds/luci/applications/luci-app-smartdns
 #cd ../openwrt
 
