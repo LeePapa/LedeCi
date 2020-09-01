@@ -9,8 +9,10 @@
 sed -i 's/192.168.1.1/192.168.88.88/g' package/base-files/files/bin/config_generate
 
 # K3 处理 #
-sed -i 's/4.19/5.4/g' target/linux/bcm53xx/Makefile #编译5.4
-sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile #仅编译K3
+#编译5.4
+sed -i 's/4.19/5.4/g' target/linux/bcm53xx/Makefile
+#仅编译K3
+sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
 # K3 处理结束 #
 
 ########## PassWall 开始 ##########
@@ -84,14 +86,15 @@ rm $WORKINGDIR/master.zip
 
 
 #去掉makefile版本限制，使用最新源码
-
-sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" $WORKINGDIR/Makefile #修改版本号为日期
-sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makefile #删除版本标识
+#修改版本号为日期
+#删除版本标识
+sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" $WORKINGDIR/Makefile
+sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makefile
 
 
 #官方方法安装luci,非最新版
-
-#LUCIBRANCH="lede" #更换此变量
+#更换此变量
+#LUCIBRANCH="lede"
 #WORKINGDIR="feeds/luci/applications/luci-app-smartdns"
 #mkdir $WORKINGDIR -p
 #rm $WORKINGDIR/* -fr
@@ -120,7 +123,8 @@ cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
 
-sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改版本号为日期
+#修改版本号为日期
+sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile
 
 mkdir ../openwrt/feeds/luci/applications/luci-app-smartdns -p
 cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
@@ -146,7 +150,8 @@ cd ../openwrt
 #cp -rf $FROM/package/luci/control/ $TO/luasrc/
 #cp -rf $FROM/package/luci/files/luci/i18n/smartdns.zh-cn.po $TO/po/zh_cn/smartdns.po
 
-#sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile #修改版本号为日期
+#修改版本号为日期
+#sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile
 
 #mkdir ../openwrt/feeds/luci/applications/luci-app-smartdns -p
 #cp -rf luci ../openwrt/feeds/luci/applications/luci-app-smartdns
