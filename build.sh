@@ -83,9 +83,9 @@
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
   rmdir $WORKINGDIR/openwrt-smartdns-master
   rm $WORKINGDIR/master.zip
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g; /PKG_MIRROR_HASH:/d; s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" feeds/packages/net/smartdns/Makefile
-  #sed -i "/PKG_MIRROR_HASH:/d" feeds/packages/net/smartdns/Makefile
-  #sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" feeds/packages/net/smartdns/Makefile
+  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#g" feeds/packages/net/smartdns/Makefile
+  sed -i "#PKG_MIRROR_HASH:#d" feeds/packages/net/smartdns/Makefile
+  sed -i "s#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#g" feeds/packages/net/smartdns/Makefile
 
 
 #官方方法安装luci,非最新版
