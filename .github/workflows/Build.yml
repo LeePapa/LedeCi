@@ -108,11 +108,12 @@ jobs:
         
         mkdir bin
         cp .config bin/full.config
-        cp -rf dl/smartdns* bin/
         
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        
+        cp -rf dl/smartdns* bin/
 
     - name: Compile the firmware
       id: compile
