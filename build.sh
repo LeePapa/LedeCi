@@ -89,6 +89,7 @@ rm $WORKINGDIR/master.zip
 #修改版本号为日期
 #删除版本标识
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" $WORKINGDIR/Makefile
+sed -i "/PKG_MIRROR_HASH:/d" $WORKINGDIR/Makefile
 sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makefile
 
 
@@ -125,7 +126,6 @@ cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
 
 #修改版本号为日期
 sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile
-
 mkdir ../openwrt/feeds/luci/applications/luci-app-smartdns -p
 cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
 cd ../openwrt
