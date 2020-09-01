@@ -83,14 +83,10 @@
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
   rmdir $WORKINGDIR/openwrt-smartdns-master
   rm $WORKINGDIR/master.zip
-
-
-#去掉makefile版本限制，使用最新源码
-#修改版本号为日期
-#删除版本标识
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" "$WORKINGDIR/Makefile"
-  sed -i "/PKG_MIRROR_HASH:/d" "$WORKINGDIR/Makefile"
-  sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" "$WORKINGDIR/Makefile"
+  
+  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" "$WORKINGDIR/Makefile" #修改版本号为日期
+  sed -i "/PKG_MIRROR_HASH:/d" "$WORKINGDIR/Makefile" #删除版本标识
+  sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" "$WORKINGDIR/Makefile" #去掉makefile版本限制，使用最新源码
 
 
 #官方方法安装luci,非最新版
@@ -123,9 +119,8 @@
   cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
-
-#修改版本号为日期
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" "$TO/Makefile"
+  
+  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" "$TO/Makefile" #修改版本号为日期
   mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
   cp -rfd luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
   cd ../openwrt
