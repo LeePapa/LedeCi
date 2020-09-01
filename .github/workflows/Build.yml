@@ -26,7 +26,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/build.config
+  CONFIG_FILE: config/${{matrix.target}}.config
   DIY_P1_SH: build.sh
   DIY_P2_SH: diy-part1.sh
   SSH_ACTIONS: false
@@ -45,7 +45,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [x86_64]
+        target: [k2p,k3]
 
     steps:
     - name: Checkout
