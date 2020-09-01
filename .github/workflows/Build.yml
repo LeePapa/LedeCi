@@ -87,11 +87,11 @@ jobs:
     - name: Load custom configuration
       run: |
         
-        echo "::set-env name=CONFIG_FILE::config/${{matrix.target}}.config"
-        echo "$CONFIG_FILE"
+        #echo "::set-env name=CONFIG_FILE::config/${{matrix.target}}.config"
+        #echo "$CONFIG_FILE"
         
         [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -e config/${{matrix.target}}.config ] && mv config/${{matrix.target}}.config openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
