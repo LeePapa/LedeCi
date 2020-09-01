@@ -83,7 +83,7 @@
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
   rmdir $WORKINGDIR/openwrt-smartdns-master
   rm $WORKINGDIR/master.zip
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d%H%M')/g" $WORKINGDIR/Makefile
+  sed -i 's/PKG_VERSION:=.*/PKG_VERSION:='$(date +'%Y%m%d%H%M')'/g' $WORKINGDIR/Makefile
   sed -i "/PKG_MIRROR_HASH:/d" $WORKINGDIR/Makefile
   sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=master/g" $WORKINGDIR/Makefile
 
@@ -118,7 +118,7 @@
   cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
-  sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$(date +'%Y%m%d')/g" $TO/Makefile
+  sed -i 's/PKG_VERSION:=.*/PKG_VERSION:='$(date +'%Y%m%d')'/g' $TO/Makefile
   mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
   cp -rfd luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
   cd ../openwrt
