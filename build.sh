@@ -86,8 +86,8 @@
   sed -i 's#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#' $WORKINGDIR/Makefile
   
   
-  rmdir $WORKINGDIR/openwrt-smartdns-master
-  rm $WORKINGDIR/master.zip
+  #rmdir $WORKINGDIR/openwrt-smartdns-master
+  #rm $WORKINGDIR/master.zip
 
 
 
