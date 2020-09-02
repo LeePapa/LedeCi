@@ -81,9 +81,9 @@
   wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
   unzip $WORKINGDIR/master.zip -d $WORKINGDIR
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
-  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#" feeds/packages/net/smartdns/Makefile
-  sed -i "#PKG_MIRROR_HASH:#d" feeds/packages/net/smartdns/Makefile
-  sed -i "s#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#" feeds/packages/net/smartdns/Makefile
+  sed -i 's#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#' feeds/packages/net/smartdns/Makefile
+  sed -i '#PKG_MIRROR_HASH:#d' feeds/packages/net/smartdns/Makefile
+  sed -i 's#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#' feeds/packages/net/smartdns/Makefile
   rmdir $WORKINGDIR/openwrt-smartdns-master
   rm $WORKINGDIR/master.zip
 
@@ -122,7 +122,7 @@
   cp -rf ./luci-compat/ ../openwrt/feeds/luci/applications/luci-app-smartdns/
   
   #mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
-  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#" ../openwrt/feeds/luci/applications/luci-app-smartdns/Makefile
+  sed -i 's#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#' ../openwrt/feeds/luci/applications/luci-app-smartdns/Makefile
   cd ../openwrt
 
 #利用第三方法,安装最新版luci 结束
