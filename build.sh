@@ -75,15 +75,15 @@
 
 ########## SmartDns 官方方法 ##########
 
-  WORKINGDIR="feeds/packages/net/smartdns"
-  mkdir $WORKINGDIR
-  rm $WORKINGDIR/* -fr
+  #WORKINGDIR="feeds/packages/net/smartdns"
+  #mkdir $WORKINGDIR
+  #rm $WORKINGDIR/* -fr
   #wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
   #unzip $WORKINGDIR/master.zip -d $WORKINGDIR
   #mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
-  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#" $WORKINGDIR/Makefile
-  sed -i '#PKG_MIRROR_HASH:#d' $WORKINGDIR/Makefile
-  sed -i 's#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#' $WORKINGDIR/Makefile
+  #sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#" $WORKINGDIR/Makefile
+  #sed -i '#PKG_MIRROR_HASH:#d' $WORKINGDIR/Makefile
+  #sed -i 's#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#' $WORKINGDIR/Makefile
   
   
   #rmdir $WORKINGDIR/openwrt-smartdns-master
