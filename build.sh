@@ -81,11 +81,12 @@
   wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
   unzip $WORKINGDIR/master.zip -d $WORKINGDIR
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
-  rmdir $WORKINGDIR/openwrt-smartdns-master
-  rm $WORKINGDIR/master.zip
   sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#" feeds/packages/net/smartdns/Makefile
   sed -i "#PKG_MIRROR_HASH:#d" feeds/packages/net/smartdns/Makefile
   sed -i "s#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#" feeds/packages/net/smartdns/Makefile
+  rmdir $WORKINGDIR/openwrt-smartdns-master
+  rm $WORKINGDIR/master.zip
+
 
 
 #官方方法安装luci,非最新版
@@ -118,9 +119,10 @@
   cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
-  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#" luci-compat/Makefile
-  mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
-  /cp -rfd luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
+  
+  #mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
+  /cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
+  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#" ../openwrt/feeds/luci/applications/luci-app-smartdns/Makefile
   cd ../openwrt
 
 #利用第三方法,安装最新版luci 结束
@@ -156,14 +158,14 @@
   #sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
   #sed -i '5s/#src-git/src-git/g' feeds.conf.default
   #sed -i 's|^#||' feeds.conf.default
-  sed -i "s/#src-git helloworld/src-git helloworld/g" feeds.conf.default
+  sed -i 's/#src-git helloworld/src-git helloworld/g' feeds.conf.default
 
 #添加OpenClash
-  sed -i "1a src-git OpenClash https://github.com/vernesong/OpenClash.git;master" feeds.conf.default
+  sed -i '1a src-git OpenClash https://github.com/vernesong/OpenClash.git;master' feeds.conf.default
 #添加AdGuardHome
-  sed -i "1a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome" feeds.conf.default
+  sed -i '1a src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome' feeds.conf.default
 #添加Diy
-  sed -i "1a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master" feeds.conf.default
+  sed -i '1a src-git diy1 https://github.com/xiaorouji/openwrt-package.git;master' feeds.conf.default
 
 #更新/安装插件列表
   #./scripts/feeds update -a
