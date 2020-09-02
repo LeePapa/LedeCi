@@ -76,7 +76,7 @@
 ########## SmartDns 官方方法 ##########
 
   WORKINGDIR="feeds/packages/net/smartdns"
-  mkdir $WORKINGDIR -p
+  mkdir $WORKINGDIR
   rm $WORKINGDIR/* -fr
   wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
   unzip $WORKINGDIR/master.zip -d $WORKINGDIR
