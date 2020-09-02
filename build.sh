@@ -121,7 +121,7 @@
   cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
-  mkdir $TEM -p
+  mkdir $TEM
   cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
   
   #mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
