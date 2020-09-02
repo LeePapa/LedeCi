@@ -80,10 +80,12 @@
   rm $WORKINGDIR/* -fr
   wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
   unzip $WORKINGDIR/master.zip -d $WORKINGDIR
+  
+  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#" $WORKINGDIR/openwrt-smartdns-master/Makefile
+  sed -i '#PKG_MIRROR_HASH:#d' $WORKINGDIR/openwrt-smartdns-master/Makefile
+  sed -i 's#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#' $WORKINGDIR/openwrt-smartdns-master/Makefile
+  
   mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
-  sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d%H%M')#" feeds/packages/net/smartdns/Makefile
-  sed -i '#PKG_MIRROR_HASH:#d' feeds/packages/net/smartdns/Makefile
-  sed -i 's#PKG_SOURCE_VERSION:=.*#PKG_SOURCE_VERSION:=master#' feeds/packages/net/smartdns/Makefile
   rmdir $WORKINGDIR/openwrt-smartdns-master
   rm $WORKINGDIR/master.zip
 
@@ -119,7 +121,7 @@
   cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
   cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
-  mkdir $TEM/luci-app-smartdns
+  sudo mkdir $TEM/luci-app-smartdns
   cp -rf luci-compat $TEM/luci-app-smartdns/
   
   #mkdir -p ../openwrt/feeds/luci/applications/luci-app-smartdns
