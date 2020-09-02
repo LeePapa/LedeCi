@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #=================================================
 # Description: DIY script
 # Lisence: MIT
