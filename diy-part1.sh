@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #=============================================================
 # https://github.com/P3TERX/Actions-OpenWrt
 # File name: diy-part1.sh
@@ -44,7 +44,7 @@ cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
 
-cp -rf luci-compat ../openwrt/feeds/luci/applications/luci-app-smartdns/
+cp -rf luci-compat/* ../openwrt/feeds/luci/applications/luci-app-smartdns/
 cd ../openwrt
 sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#" feeds/luci/applications/luci-app-smartdns/Makefile
 
