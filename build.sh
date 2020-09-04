@@ -110,7 +110,7 @@
 
 #18版本使用
 
-mkdir feeds/luci/applications/luci-app-smartdns -p
+mkdir package/smartdns/luci-app-smartdns -p
 cd ..
 git clone https://github.com/pymumu/smartdns.git pymumu
 cd smartdns-orig
@@ -124,10 +124,10 @@ cp -rf $FROM/package/luci-compat/files/luci/controller/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/model/ $TO/luasrc/
 cp -rf $FROM/package/luci-compat/files/luci/i18n/* $TO/po/zh-cn/
 
-cp -rf luci-compat/* ../openwrt/feeds/luci/applications/luci-app-smartdns/
+cp -rf luci-compat/* ../openwrt/package/smartdns/luci-app-smartdns/
 cd ../openwrt
 
-sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#" feeds/luci/applications/luci-app-smartdns/Makefile
+sed -i "s#PKG_VERSION:=.*#PKG_VERSION:=$(date +'%Y%m%d')#" package/smartdns/luci-app-smartdns/Makefile
 
 #利用第三方法,安装最新版luci 结束
 
